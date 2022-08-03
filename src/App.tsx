@@ -23,7 +23,9 @@ import authProvider from "./auth-provider";
 import Dashboard from "pages/dashboard/dashboard";
 import { Login } from "pages/login";
 
-const newRouterProvider = "";
+const { RouterComponent } = routerProvider;
+const newRouterComponent = { ...RouterComponent, basename: "/refine" };
+const customRouterProvider = { ...routerProvider, newRouterComponent };
 
 function App() {
   return (
@@ -35,7 +37,7 @@ function App() {
         notificationProvider={notificationProvider}
         ReadyPage={ReadyPage}
         catchAll={<ErrorComponent />}
-        routerProvider={routerProvider}
+        routerProvider={customRouterProvider}
         dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
         resources={[
           {
