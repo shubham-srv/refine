@@ -13,6 +13,7 @@ import {
 } from "@pankod/refine-antd";
 
 import "./login.css";
+import { Logo } from "images";
 
 const { Text, Title } = Typography;
 
@@ -45,7 +46,7 @@ export const Login: React.FC = () => {
         <Col xs={22}>
           <div className="container">
             <div className="imageContainer">
-              <img src="./refine.svg" alt="Refine Logo" />
+              <img src={Logo} alt="Refine Logo" />
             </div>
             <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
               <Form<ILoginForm>

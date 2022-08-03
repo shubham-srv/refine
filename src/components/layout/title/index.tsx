@@ -1,14 +1,15 @@
 import React from "react";
 import { TitleProps } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
-
+import { Logo } from "images";
+import { LogoCollapsed } from "images";
 const { Link } = routerProvider;
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => (
   <Link to="/">
     {collapsed ? (
       <img
-        src={"/refine-collapsed.svg"}
+        src={LogoCollapsed}
         alt="Refine"
         style={{
           display: "flex",
@@ -19,7 +20,7 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => (
       />
     ) : (
       <img
-        src={"/refine.svg"}
+        src={Logo}
         alt="Refine"
         style={{
           width: "200px",
