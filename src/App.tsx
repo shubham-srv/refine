@@ -23,6 +23,8 @@ import authProvider from "./auth-provider";
 import Dashboard from "pages/dashboard/dashboard";
 import { Login } from "pages/login";
 
+const newRouterProvider = "";
+
 function App() {
   return (
     <RefineKbarProvider>
