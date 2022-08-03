@@ -110,7 +110,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
             </Form.Item>
           </Col>
         </Row>
-        {/* <Form.Item
+        <Form.Item
           label="Content"
           name="content"
           rules={[
@@ -126,7 +126,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
               Promise.resolve(<ReactMarkdown>{markdown}</ReactMarkdown>)
             }
           />
-        </Form.Item> */}
+        </Form.Item>
       </Form>
     </Create>
   );

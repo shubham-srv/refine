@@ -252,6 +252,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
       </Modal>
 
       {/* Modal for Edit functionality */}
+
       <Modal {...editModalProps}>
         <Form {...editFormProps} layout="vertical">
           <Form.Item

@@ -85,15 +85,14 @@ export const Login: React.FC = () => {
                     </Checkbox>
                   </Form.Item>
 
-                  <a
+                  <Button
                     style={{
                       float: "right",
                       fontSize: "12px",
                     }}
-                    href="#"
                   >
                     Forgot password?
-                  </a>
+                  </Button>
                 </div>
                 <Button type="primary" size="large" htmlType="submit" block>
                   Sign in
@@ -102,9 +101,7 @@ export const Login: React.FC = () => {
               <div style={{ marginTop: 8 }}>
                 <Text style={{ fontSize: 12 }}>
                   Don’t have an account?{" "}
-                  <a href="#" style={{ fontWeight: "bold" }}>
-                    Sign up
-                  </a>
+                  <Button style={{ fontWeight: "bold" }}>Sign up</Button>
                 </Text>
               </div>
             </Card>
