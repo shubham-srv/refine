@@ -1,5 +1,4 @@
 {
-  "homepage": "https://shubham-srv.github.io/refine",
   "name": "antd-tuto-new",
   "version": "0.1.0",
   "private": true,
@@ -27,12 +26,9 @@
     "@types/node": "^12.20.10",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.2",
-    "gh-pages": "^4.0.0",
     "typescript": "^4.2.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "dev": "craco start",
     "build": "craco build",
     "test": "craco test",
