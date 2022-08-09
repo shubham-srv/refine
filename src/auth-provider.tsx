@@ -23,8 +23,6 @@ const authProvider: AuthProvider = {
   },
 
   checkAuth: () => {
-    console.log(localStorage.getItem("Auth"));
-    console.log(Boolean(localStorage.getItem("Auth")));
     return localStorage.getItem("Auth") ? Promise.resolve() : Promise.reject();
   },
 

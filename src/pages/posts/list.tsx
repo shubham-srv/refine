@@ -1,5 +1,8 @@
+import React from "react";
+import { debounce } from "lodash";
 import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
 import {
+  Menu,
   List,
   Table,
   TextField,
@@ -11,6 +14,7 @@ import {
   DeleteButton,
   useSelect,
   TagField,
+  Dropdown,
   FilterDropdown,
   Select,
   ShowButton,
@@ -23,6 +27,7 @@ import {
   Icons,
   Button,
 } from "@pankod/refine-antd";
+
 import { IPost, ICategory } from "interfaces";
 
 const setTagColor = (tag: string) => {
@@ -40,8 +45,10 @@ const setTagColor = (tag: string) => {
       return "";
   }
 };
+
 const { PlayCircleOutlined, StopOutlined } = Icons;
 
+// custom tag and live info
 const setLiveInfo = (tag: string) => {
   if (tag === "rejected") {
     return (
@@ -63,8 +70,80 @@ const setLiveInfo = (tag: string) => {
   }
 };
 
+// List Component
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-  const { tableProps, sorter } = useTable<IPost>({
+  const statusMenuItems = (
+    <Menu
+      selectable
+      items={[
+        {
+          onClick: (info) => {
+            setFilters([{ field: "status", operator: "eq", value: "draft" }]);
+          },
+          key: "1",
+          label: <TagField value="draft" color={setTagColor("draft")} />,
+        },
+        {
+          onClick: (info) => {
+            setFilters([
+              { field: "status", operator: "eq", value: "published" },
+            ]);
+          },
+          key: "2",
+          label: (
+            <TagField value="published" color={setTagColor("published")} />
+          ),
+        },
+        {
+          onClick: (info) => {
+            setFilters([
+              { field: "status", operator: "eq", value: "rejected" },
+            ]);
+          },
+          key: "3",
+          label: <TagField value="rejected" color={setTagColor("rejected")} />,
+        },
+      ]}
+    />
+  );
+  // const [postList, setPostList] = useState<IPost[]>([]);
+  // const [defaultData, setDefaultData] = useState<IPost[]>([]);
+
+  // const dataProvider = useDataProvider();
+  // const defaultDataProvider = dataProvider();
+  // defaultDataProvider.getList({ resource: "posts" }).then((data) => {
+  //   const dataObj = [...data?.data];
+  //   // console.log(dataObj);
+  //   // dataObj.forEach((eachData)=> {
+  //   //   setDefaultData((prevData)=> ([...prevData, eachData]))
+  //   // })
+  // });
+
+  // const { refetch: refetchPosts } = useList<IPost>({
+  //   resource: "posts",
+  //   config: {
+  //     filters: [{ field: "title", operator: "contains", value: searchValue }],
+  //     hasPagination: false,
+  //   },
+  //   queryOptions: {
+  //     enabled: false,
+  //     onSuccess: (data) => {
+  //       console.log(data);
+  //       console.log(data.data);
+  //       const newData = data.data;
+  //       setPostList((prevData) => {
+  //         return [...prevData, ...newData];
+  //       });
+  //     },
+  //   },
+  // });
+
+  // useEffect(() => {
+  //   setPostList([]);
+  //   refetchPosts();
+  // }, [searchValue, refetchPosts]);
+
+  const { tableProps, sorter, setFilters } = useTable<IPost>({
     initialSorter: [
       {
         field: "id",
@@ -102,6 +181,27 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
   return (
     <>
       <List createButtonProps={{ onClick: () => createModal() }}>
+        <Space
+          style={{
+            float: "right",
+            position: "absolute",
+            top: "2.2vh",
+            right: "10vw",
+          }}
+        >
+          <Dropdown overlay={statusMenuItems} placement="bottom">
+            <Button>Status</Button>
+          </Dropdown>
+          <Input
+            onChange={debounce((e) => {
+              setFilters([
+                { field: "title", operator: "contains", value: e.target.value },
+              ]);
+            }, 500)}
+            placeholder="search by title"
+          />
+        </Space>
+
         <Table {...tableProps} rowKey="id" scroll={{ y: "60vh" }}>
           <Table.Column
             dataIndex="id"
